@@ -1,0 +1,9 @@
+exports.home=(req,res)=>{
+    res.render('index')
+}
+exports.registers=(req,res)=>{
+    res.render('signup')
+}
+exports.userdetail=(req,res)=>{
+    res.render('userdetails')
+}
