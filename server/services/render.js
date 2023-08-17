@@ -7,3 +7,6 @@ exports.registers=(req,res)=>{
 exports.userdetail=(req,res)=>{
     res.render('userdetails')
 }
+exports.update=(req,res)=>{
+    res.render('update')
+}

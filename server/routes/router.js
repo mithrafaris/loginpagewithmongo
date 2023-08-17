@@ -8,6 +8,7 @@ route.get('/register',servers.registers);
    
 route.get('/userdetails',servers.userdetail)
 
+route.get('/update',servers.update)
 
 
 
