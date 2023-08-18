@@ -4,12 +4,15 @@ const morgan = require("morgan"); //in console log it will show what all request
 const bodyparser = require("body-parser"); //cerialize the data and access the data using body property
 const app = express();
 const path = require("path");
+const connectDB=require('./server/database/connection')
 dotenv.config({ path: "config.env" });
 const port = process.env.PORT || 3001;
 const route = require("./server/routes/router");
 //log requests
 app.use(morgan("tiny")); //morgon formate,token
 //parse request to body-parser
+//mongodb connection
+connectDB()
 app.use(bodyparser.urlencoded({ extended: true }));
 //set view engin
 app.set("view engine", "ejs");
