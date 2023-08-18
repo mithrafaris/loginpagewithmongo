@@ -10,6 +10,7 @@ route.get('/register',servers.registers);
 route.get('/userdetails',servers.userdetail)//add user
 
 route.get('/update',servers.update)//update user
+route.get('/admin',servers.admin)//update admin
 
 //api 
 route.post('/api/users',controller.create)

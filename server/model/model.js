@@ -1,18 +1,18 @@
 const mongoose = require("mongoose");
 var Schema = new mongoose.Schema({
-  FirstName: {
+  firstName: {
     type: String,
     required: true,
   },
-  LastName: {
+  lastName: {
     type: String,
     required: true,
   },
-  Gender: {
+  gender: {
     type: String,
     required: true,
   },
-  emailid: {
+  email: {
     type: String,
     unique: true,
     require: true,
@@ -20,11 +20,8 @@ var Schema = new mongoose.Schema({
   password: {
     type: String,
     require: true,
-  },
-  confirmpassword: {
-    type: String,
-    require: true,
   }
+  
 }); //MODEL METHOD is used to create a collection of a particular database of mongoDB
 const userDB = mongoose.model("userDB", Schema);
 module.exports = userDB;

@@ -8,10 +8,10 @@ exports.create=(req,res)=>{
     }
     //new user
     const user= new userDB({
-        FirstName:req.body.firstName,
-        LastName:req.body.lastName,
-        Gender:req.body.gender,
-        emailid:req.body.email,
+        firstName:req.body.firstName,
+        lastName:req.body.lastName,
+        gender:req.body.gender,
+        email:req.body.email,
         password:req.body.password,
         isAdmin:0
 
@@ -30,13 +30,57 @@ exports.create=(req,res)=>{
 }
 //retrive and return all user/retrive and return a single user
 exports.find=(req,res)=>{
+    userDB.find()
+    .then(user=>{
+        res.send(user)
+    })
+    .catch(err=>{
+        res.status(500).send({message:err.message||"error occurred while retriving user information"})
+    })
 
-} 
+    }
+
 //update a new identified byuser id
 exports.update=(req,res)=>{
+    if (!req.body){
+        return res
+        .status(400)
+        .send({message:"data to upate can not be empty "})
+    }
+    const id= req.params.id;
+    console.log(id);
+   userDB.findByIdAndUpdate(id,req.body,{new:true})
+   .then(data=>{
+    if(!data){
+        res.status(404).send({message:`cannot update user with ${id}.Maybe user not found!`})
+    }else{
+        res.send(data);   
+}
+})
+.catch(err=>{
+    res.status(500).send({message:err.message})
+})
 
 }
 //delete a user with specified user id in the request
 exports.delete=(req,res)=>{
-    //remove from database
+    const id = req.params.id;
+    userDB.findByIdAndDelete(id)
+    .then(data=>{
+        if(!data){
+            res.status(404).send({message:`cannot delete with id${id}.maybe id is wrong`})
+        }else {
+        res.send({
+            message:"user was deleted successfully"
+        })   //remove from database
+ 
 }
+    }).catch(err=>{
+        res.status(500).send({
+            message:`could not delete user with id ${id}`
+        })
+    })
+        
+}      
+//url parameter and query parameter
+//get single user

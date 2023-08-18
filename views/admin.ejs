@@ -1,0 +1,41 @@
+<!-- header.ejs -->
+<%- include('header') -%>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet"href="/static/style.css">
+
+<section class="form my-4">
+    <div class="container">
+        <h2 class="text-center my-5">ADMIN PAGE</h2>
+        <%if(locals.logout){%>
+            <div class="alter alert-success text-center">
+                <%= logout%>
+            </div>
+            <%} %>
+<form class="container" action="/admin"method="POST">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 ">
+                            <img src="img/login.JPG"class="img-fluid mx-auto d-flex"alt="">
+                         </div>
+        
+                         <div class="col-lg-6 col-md-6 col-sm-12 my-5"> 
+                            <input type="email" name="email" placeholder="Email address" class="form-control my-2">
+                            <input type="password" name="password" placeholder="******" class="form-control my-2">
+                            <button type="btn" class="btn btn-primary my-3">login</button><br>
+                         <!-- <a href="#" class="my-4">forgot password</a> -->
+                         <!-- <p class="my-2">Don't have an account?<a href="/">Register here</a></p> -->
+                        </div>
+
+</form>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+</section>
+
+<!-- footer.ejs -->
+<%- include('footer') -%>

@@ -10,3 +10,6 @@ exports.userdetail=(req,res)=>{
 exports.update=(req,res)=>{
     res.render('update')
 }
+exports.admin=(req,res)=>{
+    res.render('admin')
+}
