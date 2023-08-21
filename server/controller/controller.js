@@ -1,9 +1,10 @@
 var userDB=require('../model/model')
 //create and save new user
 exports.create=(req,res)=>{
+    
     //validate request
     if(!req.body){
-        res.status(400).send({message:'content can not be empty!'})
+        res.status(404).send({message:'content can not be empty!'})
         return;
     }
     //new user
@@ -12,12 +13,13 @@ exports.create=(req,res)=>{
         lastName:req.body.lastName,
         gender:req.body.gender,
         email:req.body.email,
-        password:req.body.password,
-        isAdmin:0
+        password:req.body.password
+        
 
     })
+    
     //save userin the database
-    user.save()
+    user.save(user)
     .then(data=>{
         res.send(data)
     }).catch(err=>{
@@ -54,7 +56,7 @@ userDB.find()
 
     }}
 
-//update a new identified byuser id
+///update a new identified byuser id
 exports.update=(req,res)=>{
     if (!req.body){
         return res

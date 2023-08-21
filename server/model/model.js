@@ -23,5 +23,5 @@ var Schema = new mongoose.Schema({
   }
   
 }); //MODEL METHOD is used to create a collection of a particular database of mongoDB
-const userDB = mongoose.model("userDB", Schema);
+const userDB = mongoose.model("userdbs", Schema);
 module.exports = userDB;
