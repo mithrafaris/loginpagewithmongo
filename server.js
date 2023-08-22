@@ -4,6 +4,7 @@ const morgan = require("morgan"); //in console log it will show what all request
 const bodyparser = require("body-parser"); //cerialize the data and access the data using body property
 const app = express();
 const path = require("path");
+// const session=require("express-session")
 const connectDB=require('./server/database/connection')
 dotenv.config({ path: "config.env" });
 const port = process.env.PORT || 3001;
@@ -19,7 +20,7 @@ app.set("view engine", "ejs");
 //load public(static files)
 app.use("/css", express.static(path.resolve(__dirname, "public/css"))); //css/style.css
 app.use("/img", express.static(path.resolve(__dirname, "public/img"))); //img
-app.use("/css", express.static(path.resolve(__dirname, "public/js"))); //
+app.use("/js", express.static(path.resolve(__dirname, "public/js"))); //
 //load routers
 app.use("/", route);
 app.listen(port, () => {

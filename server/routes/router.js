@@ -1,5 +1,12 @@
 const express=require("express");
 const route=express.Router()
+// const session = require("express-session");
+// const cookieParser = require("cookie-parser");
+
+
+
+
+
 const servers=require('../services/render');
 //this is from root route and using get method
 const controller=require('../controller/controller')
@@ -11,6 +18,8 @@ route.get('/userdetails',servers.userdetail)//add user
 
 route.get('/update',servers.update)//update user
 route.get('/admin',servers.admin)//update admin
+//session 
+
 
 //api 
 route.post('/api/users',controller.create)
