@@ -100,4 +100,3 @@ exports.delete=(req,res)=>{
 }      
 //url parameter and query parameter
 //get single user
-  

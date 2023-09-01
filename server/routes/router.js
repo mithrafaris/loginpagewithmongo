@@ -1,7 +1,7 @@
 const express=require("express");
 const route=express.Router()
-// const session = require("express-session");
-// const cookieParser = require("cookie-parser");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
 
 
 
@@ -18,6 +18,8 @@ route.get('/userdetails',servers.userdetail)//add user
 
 route.get('/update',servers.update)//update user
 route.get('/admin',servers.admin)//update admin
+route.get('/dashboard', servers.dashboard);
+route.get('/logout',servers.logout)
 //session 
 
 

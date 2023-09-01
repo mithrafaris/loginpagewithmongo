@@ -31,3 +31,9 @@ exports.home = (req, res) => {
 exports.registers = (req, res) => {
   res.render("signup");
 };
+exports.dashboard=(req,res)=>{
+  res.render("dashboard")
+}
+exports.logout=(req,res)=>{
+  res.render('logout', { message: 'Logout Successfully' });
+}
