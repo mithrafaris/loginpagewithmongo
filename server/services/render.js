@@ -1,4 +1,6 @@
 const axios = require("axios"); //allow us to make request
+
+const userDB=require("../model/model")
 exports.userdetail = (req, res) => {
   //make a get request to/api/users
   axios
@@ -21,19 +23,58 @@ exports.update = (req, res) => {
       res.send(err);
     });
 };
+// exports.loginuser=(req,res)=>{
+//   if()
+// }
 
-exports.admin = (req, res) => {
-  res.render("admin");
-};
 exports.home = (req, res) => {
-  res.render("index");
+  if(req.session.userid){
+    res.render("dashboard")
+  }else if(req.session.userid2){
+    res.render("loginuser")
+  }else{
+    res.render("index")
+  }
+  
 };
 exports.registers = (req, res) => {
-  res.render("signup");
+  res.render("signup",);
 };
-exports.dashboard=(req,res)=>{
-  res.render("dashboard")
-}
+exports.dashboard = async (req, res) => {
+  const { email, password } = req.body;
+  const user = await userDB.findOne({ email });
+  //  console.log(user);
+  if (!user) {
+    res.status(500).send({ message: "User not found" });
+  }
+
+  if (user.email == email && user.password == password && user.isAdmin == 1) {
+    req.session.userid = user;
+    // req.session.userid=user.email;
+    if (req.session.userid) {
+      res.render("dashboard");
+    }
+  }else if(user.email==email&&user.password==password&&user.isAdmin==0){
+    req.session.userid2=email;
+    if(req.session.userid2){
+      res.render("loginuser")
+    }
+      
+     
+  
+  }
+   else {
+    res.send({ message: "email or password is wrong" });
+  }
+};
 exports.logout=(req,res)=>{
-  res.render('logout', { message: 'Logout Successfully' });
-}
+  req.session.destroy((err) => {
+    if (err) {
+      console.log(`Error found at destroy session , ERROR : ${ex.message}`);
+    } else {
+      console.log("Session destroyed .")
+    }
+    res.render('logout', { message: 'Logout Successfully' });
+  })
+};
+

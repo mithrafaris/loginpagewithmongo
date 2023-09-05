@@ -6,12 +6,12 @@ const app = express();
 const path = require("path");
 const cookieParser=require("cookie-parser");
 const session=require("express-session");
-// const session=require("express-session")
 const connectDB=require('./server/database/connection')
+const userController=require("./server/controller/controller")
+const controller=require("./server/controller/controller")
 dotenv.config({ path: "config.env" });
 const port = process.env.PORT || 3001;
-const route = require("./server/routes/router");
-//Middleware
+const route = require("./server/routes/router")
 app.use(cookieParser());
 app.use(bodyparser.urlencoded({extended:true}))
 app.use(session({
@@ -25,7 +25,6 @@ app.use((req, res, next) => {
     res.setHeader('Cache-Control', 'no-store');
     next();
 });
-
 
 //log requests
 app.use(morgan("tiny")); //morgon formate,token

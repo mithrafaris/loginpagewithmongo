@@ -20,7 +20,12 @@ var Schema = new mongoose.Schema({
   password: {
     type: String,
     require: true,
-  }
+  },
+ isAdmin:{
+    type:Number,
+    required:true,
+    default:0
+}
   
 }); //MODEL METHOD is used to create a collection of a particular database of mongoDB
 const userDB = mongoose.model("userdbs", Schema);
