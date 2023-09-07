@@ -28,16 +28,18 @@ app.use((req, res, next) => {
 
 //log requests
 app.use(morgan("tiny")); //morgon formate,token
-//parse request to body-parser
 //mongodb connection
 connectDB()
+//parse request to body-parser
 app.use(bodyparser.urlencoded({ extended: true }));
 //set view engin
 app.set("view engine", "ejs");
+// app.set("views".path.resolve(__dirname,"views/ejs")) if we make files inside the views file
 //load public(static files)
 app.use("/css", express.static(path.resolve(__dirname, "public/css"))); //css/style.css
 app.use("/img", express.static(path.resolve(__dirname, "public/img"))); //img
 app.use("/js", express.static(path.resolve(__dirname, "public/js"))); //
+
 //load routers
 app.use("/", route);
 app.use("*",(req,res)=>{

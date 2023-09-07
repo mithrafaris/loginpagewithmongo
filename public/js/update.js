@@ -18,8 +18,6 @@ $("#userdetails").submit(function (event) {
   });
 });
 
-
-
 if(window.location.pathname=="/userdetails"){
     console.log("comming in if condition");
 $ondelete=$(".table tbody td a.delete");

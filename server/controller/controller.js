@@ -3,15 +3,12 @@ const axios=require("axios")
 const mongoose=require("mongoose")
 var userDB=require('../model/model')
 
-
-
-
 //create and save new user
 exports.create=(req,res)=>{
     
     //validate request
     if(!req.body){
-        res.status(404).send({message:'content can not be empty!'})
+        res.status(404).send({message:'content can not be empty!'})// body empty return
         return;
     }
     //new user
@@ -28,7 +25,9 @@ exports.create=(req,res)=>{
     //save userin the database
     user.save(user)
     .then(data=>{
-        res.send(data)
+         res.send(data)
+        //  res.redirect('/userdetails')
+      
     }).catch(err=>{
         res.status(500).send({
             message:err.message||"some error occured while creating a create operation"
@@ -62,7 +61,6 @@ userDB.find()
     })
 
     }}
-
 ///update a new identified byuser id
 exports.update=(req,res)=>{
     if (!req.body){
@@ -70,7 +68,7 @@ exports.update=(req,res)=>{
         .status(400)
         .send({message:"data to upate can not be empty "})
     }
-    const id= req.params.id;
+    const id= req.params.id; //will make id parameter other 
     console.log(id);
    userDB.findByIdAndUpdate(id,req.body,{new:true})
    .then(data=>{
