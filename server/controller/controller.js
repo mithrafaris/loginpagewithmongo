@@ -25,8 +25,8 @@ exports.create=(req,res)=>{
     //save userin the database
     user.save(user)
     .then(data=>{
-         res.send(data)
-        //  res.redirect('/userdetails')
+        //  res.send(data)
+         res.redirect('/userdetails')
       
     }).catch(err=>{
         res.status(500).send({

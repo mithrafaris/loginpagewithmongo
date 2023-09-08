@@ -16,6 +16,29 @@
   <a href="/">Back to Home</a>
 </div>
 </body>
+<script>
+  app.get('/login', (req, res) => {
+  // Assuming user authentication logic here, set a session variable if authentication is successful
+  req.session.isAuthenticated = true;
+  res.send('Login successful');
+});
+
+app.get('/logout', (req, res) => {
+  // Clear the session when the user logs out
+  req.session.destroy();
+  res.send('Logged out');
+});
+
+app.get('/dashboard', (req, res) => {
+  // Check if the user is authenticated before displaying the dashboard
+  if (req.session.isAuthenticated) {
+    res.render('dashboard'); // Replace with your actual dashboard rendering logic
+  } else {
+    res.redirect('/login'); // Redirect to the login page if not authenticated
+  }
+});
+
+</script>
     <!-- footer.ejs -->
     <%- include('footer') -%>
 

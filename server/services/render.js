@@ -2,6 +2,7 @@ const axios = require("axios"); //allow us to make request make it easy to make 
 
 const userDB=require("../model/model")
 exports.userdetail = (req, res) => {
+
   //make a get request to/api/users
   axios
     .get("http://localhost:3000/api/users")
@@ -26,6 +27,7 @@ exports.home = (req, res) => {
 
 //update user
 exports.update = (req, res) => {
+  
   axios
     .get("http://localhost:3000/api/users", { params: { id: req.query.id } })
     .then(function (userdata) {
