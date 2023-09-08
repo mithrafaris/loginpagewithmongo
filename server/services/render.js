@@ -2,6 +2,9 @@ const axios = require("axios"); //allow us to make request make it easy to make 
 
 const userDB=require("../model/model")
 exports.userdetail = (req, res) => {
+  if (!req.session.userid) {
+    return res.redirect("/login"); 
+  }
 
   //make a get request to/api/users
   axios
@@ -12,7 +15,10 @@ exports.userdetail = (req, res) => {
     .catch((err) => {
       res.send(err);
     });
+
+
 };
+
 //add user
 exports.home = (req, res) => {
   if(req.session.userid){
@@ -27,7 +33,9 @@ exports.home = (req, res) => {
 
 //update user
 exports.update = (req, res) => {
-  
+  if (!req.session.userid) {
+    return res.redirect("/login"); 
+  }
   axios
     .get("http://localhost:3000/api/users", { params: { id: req.query.id } })
     .then(function (userdata) {
@@ -41,7 +49,10 @@ exports.update = (req, res) => {
 
 
 exports.registers = (req, res) => {
-  res.render("signup",);
+  if (!req.session.userid) {
+    return res.redirect("/login"); 
+  }
+  res.render("signup");
 };
 exports.dashboard = async (req, res) => {
   const { email, password } = req.body;
@@ -73,11 +84,14 @@ exports.dashboard = async (req, res) => {
 
 
 exports.logout=(req,res)=>{
+  if (!req.session.userid) {
+    return res.redirect("/login"); 
+  }
   req.session.destroy((err) => {
     if (err) {
       console.log(`Error found at destroy session , ERROR : ${ex.message}`);
     } else {
-      console.log("Session destroyed .")
+      console.log("Session destroyed")
     }
     res.render('logout', { message: 'Logout Successfully' });
   })
